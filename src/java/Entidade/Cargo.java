@@ -15,7 +15,7 @@ import javax.persistence.Id;
  * @author Leandro David
  * @author Thayllan Siqueira
  */
-@Entity
+@Entity (name = "tbCargo")
 public class Cargo {
     
     @Id

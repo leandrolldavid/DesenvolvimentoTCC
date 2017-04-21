@@ -1,6 +1,5 @@
 package Entidade;
 
-import Hibernate.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

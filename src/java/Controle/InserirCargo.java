@@ -6,7 +6,7 @@
 package Controle;
 
 import Entidade.Cargo;
-import Hibernate.HibernateUtil;
+import Entidade.CargoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -36,11 +36,10 @@ public class InserirCargo extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-                 try{
                 Cargo CrCargo = new Cargo();
 
-                CrCargo.setPerfil(request.getParameter("cargo"));
-                CrCargo.setIdCargo(1);
+              //  CrCargo.setPerfil(request.getParameter("cargo"));
+                  CrCargo.setPerfil("Gerente");
                 /*
                 String num = request.getParameter("num");
                 if(num != null){
@@ -48,25 +47,16 @@ public class InserirCargo extends HttpServlet {
                     cargo.setNum_serie(numi);
                 }
 */ 
-                Session sessao = HibernateUtil.getSessionFactory().openSession();
-                     out.println(CrCargo.getPerfil());
-
-                Transaction tx = sessao.beginTransaction();
-
-                sessao.save(CrCargo);
-                sessao.flush();
-
-                tx.commit();
-
-                sessao.close();
-                
+              CargoDAO inserir = new CargoDAO();
+              inserir.salvar(CrCargo);
+                              
                 out.println("Regist ro inserido com sucesso!");
             } catch (Exception ex) {
-                out.println("Erro ao inserir: " + ex.getMessage());
+                System.out.println("Erro ao inserir: " + ex.getMessage());
             }
             
         }
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
